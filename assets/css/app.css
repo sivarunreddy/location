@@ -1,0 +1,58 @@
+body {
+    background-color: white;
+    background-image: url("../images/map.png");
+}
+
+.text-super {
+    vertical-align: super;
+}
+
+.login {
+    min-height: 300px;
+    padding-top: 100px !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.login-center-padding {
+    padding: 15%;
+    padding-left: 15%;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.drop-down {
+    max-height: 100px;
+    max-width: 300px;
+    border: 1px solid grey;
+    position: absolute;
+    background-color: white;
+    overflow: auto;
+}
+
+.drop-down ul {
+    list-style: none
+}
+
+.drop-down ul li {
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+.search-results{
+    padding: 2% 5%;
+}
+
+.w3-row-padding{
+    padding: 0px !important;
+}
+
+.word-count{
+    padding-left: 15%;
+    padding-bottom: 50px;
+}

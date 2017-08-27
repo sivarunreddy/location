@@ -1,0 +1,71 @@
+<div class="w3-row ">
+    <div class="w3-col l4">
+        <div class="w3-card-4 w3-display-middle">
+            <div class="w3-container w3-blue">
+                <h2>Hotel search</h2>
+            </div>
+
+            <div class="w3-container w3-padding">
+                <div class="w3-cell-row">
+                    <label>Destination</label>
+                    <input
+                            class="w3-input" type="text"
+                            [(ngModel)]="searchView.destination"
+                            (input)="cityLookup()"
+                            placeholder="Enter destination">
+                    <div class="drop-down full-width w3-text-blue" *ngIf="suggestCities.length > 0">
+                        <ul>
+                            <li *ngFor="let cityInfo of suggestCities">
+                                <span (click)="selectSuggestion(cityInfo)">{{cityInfo.city}}, {{cityInfo.region}}, {{cityInfo.country_code}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w3-cell-row">
+                    <div class="w3-cell l2">
+                        <label>Check in</label>
+                        <input class="w3-input" [(ngModel)]="searchView.from" type="date">
+                    </div>
+                    <div class="w3-cell l2 w3-padding">
+                        <label>Check out</label>
+                        <input class="w3-input" type="date" [(ngModel)]="searchView.to">
+                    </div>
+                </div>
+                <div class="w3-cell-row">
+                    <div class="w3-cell  w3-padding">
+                        <label>Adults</label>
+                        <select class="w3-select" [(ngModel)]="searchView.adults">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="w3-cell  w3-padding">
+                        <label>Children</label>
+                        <select class="w3-select" name="option" [(ngModel)]="searchView.children">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="w3-cell  w3-padding">
+                        <label>Rooms</label>
+                        <select class="w3-select" name="option" [(ngModel)]="searchView.rooms">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w3-right-align">
+                    <button (click)="search()"
+                            class="w3-btn w3-padding-large w3-blue w3-right-align">
+                        Show Deals <i class="material-icons">search</i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

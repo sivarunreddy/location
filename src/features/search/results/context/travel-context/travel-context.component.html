@@ -1,0 +1,44 @@
+<div class="w3-padding">
+    <div class="w3-row-padding w3-border">
+        <div class="w3-container w3-blue w3-border">
+            <h2>
+                <i class="material-icons w3-xxxlarge">directions</i>
+                <span class="text-super">Travel Context</span>
+            </h2>
+        </div>
+
+
+        <div class="w3-third w3-section w3-padding" *ngFor="let travelContext of contextData">
+            <div class="w3-card-4">
+                <div class="full-width text-center">
+                    <i class="material-icons w3-jumbo w3-text-orange">{{TRAVEL_MODS_MAPPING[travelContext.travelMode].logo}}</i>
+                </div>
+
+                <div class="w3-container w3-white">
+                    <h4 class="w3-xlarge">{{TRAVEL_MODS_MAPPING[travelContext.travelMode].title}}</h4>
+                    <table class="w3-table" *ngIf="travelContext.feasibility == 'REASONABLE_STRETCH';else no_travel">
+                        <tr>
+                            <td>Distance</td>
+                            <td>{{travelContext.timeDistance.distance}} KM</td>
+                        </tr>
+                        <tr>
+                            <td>Time</td>
+                            <td>{{getTime(travelContext.timeDistance.time)}}</td>
+                        </tr>
+                    </table>
+
+                    <ng-template #no_travel>
+                        <table class="full-width">
+                            <tr rowspan="2">
+                                <td colspan="2" class="text-center">
+                                    <i class="material-icons w3-jumbo w3-text-red">not_interested</i>
+                                </td>
+                            </tr>
+                        </table>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="w3-container w3-blue-gray">
+    <div class="w3-cell w3-padding">
+        Destination
+        <input type="text"
+               class="w3-bar-item w3-input"
+               [(ngModel)]="searchView.destination"
+               (input)="cityLookup()"
+               placeholder="Destination">
+        <div class="drop-down full-width w3-text-blue" *ngIf="suggestCities.length > 0">
+            <ul>
+                <li *ngFor="let cityInfo of suggestCities">
+                    <span (click)="selectSuggestion(cityInfo)">{{cityInfo.city}}, {{cityInfo.region}}, {{cityInfo.country_code}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="w3-cell w3-padding">
+        <label>Check in</label>
+        <input class="w3-input" [(ngModel)]="searchView.from" type="date">
+    </div>
+    <div class="w3-cell w3-padding">
+        <label>Check out</label>
+        <input class="w3-input" type="date" [(ngModel)]="searchView.to">
+    </div>
+    <div class="w3-cell w3-padding">
+        <label>Adults</label>
+        <select class="w3-select" [(ngModel)]="searchView.adults">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div class="w3-cell w3-padding">
+        <label>Children</label>
+        <select class="w3-select" name="option" [(ngModel)]="searchView.children">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div class="w3-cell w3-padding">
+        <label>Rooms</label>
+        <select class="w3-select" name="option" [(ngModel)]="searchView.rooms">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div class="w3-cell w3-padding w3-cell-bottom">
+        <button class="w3-bar-item w3-button w3-blue" (click)="search()">Search <i class="material-icons">search</i>
+        </button>
+    </div>
+</div>
+
+<div class="search-results" *ngIf="searchResult">
+
+    <travel-context [contextData]="searchResult.TravelContext"></travel-context>
+
+    <search-context [contextData]="searchResult.OccupancyContext"></search-context>
+
+    <user-context [contextData]="searchResult.userContext"></user-context>
+
+</div>
+

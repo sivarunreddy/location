@@ -1,0 +1,19 @@
+<header class="w3-container w3-indigo">
+    <div class="w3-padding w3-cell-row">
+        <div class="w3-cell">
+            <a href="/"><i class="material-icons w3-xxxlarge w3-text-white">home</i></a>
+        </div>
+        <div class="w3-cell text-center">
+            <h1>
+                <i class="material-icons w3-xxxlarge w3-text-yellow">place</i>
+                <span class="w3-center text-super">Location and context</span>
+            </h1>
+        </div>
+        <div class="w3-cell">
+            <span class="w3-right text-super w3-large">{{user.name}} <img src="{{user.profileImage}}" class="w3-round"></span>
+        </div>
+    </div>
+</header>
+<section>
+    <router-outlet></router-outlet>
+</section>
