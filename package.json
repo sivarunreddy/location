@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Location and context",
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
