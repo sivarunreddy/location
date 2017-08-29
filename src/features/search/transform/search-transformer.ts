@@ -11,23 +11,13 @@ export class SearchTransformer {
             destinationId: Number(view.destination_id).toString(),
             fromDate: from.format("YYYY-MM-DD"),
             toDate: to.format("YYYY-MM-DD"),
-            /*fromDate: {
-             year: from.get("year"),
-             month: (from.get("month") + 1),
-             day: from.get("date"),
-             },
-             toDate: {
-             year: to.get("year"),
-             month: (to.get("month") + 1),
-             day: to.get("date"),
-             },*/
             rooms: SearchTransformer.getRooms(view),
             user: {
                 accessToken: user.accessToken,
-                /*geoCoordinate: {
+                geoCoordinate: {
                     latitude: geoLocation.latitude,
                     longitude: geoLocation.longitude,
-                },*/
+                },
             },
         };
     }
@@ -51,22 +41,22 @@ export class SearchTransformer {
 
         userContextResult.forEach(result => {
             if (result.contextType === "CountriesVisited") {
-                const countries = result.dataCount || {};
+                const countries = result.data || {};
                 userContext.countriesVisited = [];
                 Object.keys(countries).forEach(key => {
                     userContext.countriesVisited.push({
                         name: key,
                         count: countries[key],
-                    })
+                    });
                 });
             } else if (result.contextType === "ThemesPopular") {
-                const theams = result.dataCount || {};
+                const theams = result.data || {};
                 userContext.themesPopular = [];
                 Object.keys(theams).forEach(key => {
                     userContext.themesPopular.push({
                         type: key,
                         count: theams[key],
-                    })
+                    });
                 });
             }
         });

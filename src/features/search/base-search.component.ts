@@ -7,11 +7,15 @@ import {ISearchView} from "./search-view";
 import {SearchTransformer} from "./transform/search-transformer";
 import {Component} from "@angular/core";
 
-@Component({
-})
+@Component({})
 export abstract class BaseSearchComponent {
-
     private FORMAT = "YYYY-MM-DD";
+    public isSearchInProgress = false;
+    public message: {
+        id?: string,
+        type: string,
+        text: string,
+    };
     public searchView: ISearchView = {
         destination: "",
         from: moment().format(this.FORMAT),
@@ -42,16 +46,31 @@ export abstract class BaseSearchComponent {
     }
 
     public search(): void {
+        this.message = undefined;
         const params = {
             view: this.searchView,
             geoLocation: this._geoLocationService.getGeoLocation(),
             user: this._authService.getUser(),
         };
-
+        if (!this.searchView.destination_id) {
+            this.message = {
+                id: "destination_id",
+                type: "INPUT_VALIDATION",
+                text: "Invalid destination id",
+            };
+            return;
+        }
+        this.isSearchInProgress = true;
         this._searchService.search(SearchTransformer.toModel(params)).subscribe(() => {
+                this.isSearchInProgress = false;
                 this.catchSearchData();
             },
             (error) => {
+                this.isSearchInProgress = false;
+                this.message = {
+                    type: "SERVICE",
+                    text: "Unable to fetch the search results",
+                };
                 console.log(error);
             }
         );

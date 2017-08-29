@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Location_context/.idea/Loc&amp;context.iml" filepath="$PROJECT_DIR$/../Location_context/.idea/Loc&amp;context.iml" />
+      <module fileurl="file://D:\work\Location_context\.idea\Loc&amp;context.iml" filepath="D:\work\Location_context\.idea\Loc&amp;context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/loc.iml" filepath="$PROJECT_DIR$/.idea/loc.iml" />
     </modules>
   </component>
 </project>

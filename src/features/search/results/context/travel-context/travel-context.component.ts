@@ -4,7 +4,7 @@ import {BaseContextComponent} from "../base-context.component";
 
 @Component({
     selector: "travel-context",
-    templateUrl: './travel-context.component.html',
+    templateUrl: "./travel-context.component.html",
 })
 export class TravelContextComponent extends BaseContextComponent {
     public TRAVEL_MODS_MAPPING = {

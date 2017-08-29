@@ -5,7 +5,7 @@ import {ISearch} from "../../../shared/model";
 import {BaseSearchComponent} from "../base-search.component";
 
 @Component({
-    templateUrl: './search-results.component.html',
+    templateUrl: "./search-results.component.html",
 })
 export class SearchResults extends BaseSearchComponent implements OnInit {
     public searchView: ISearchView;
@@ -16,7 +16,7 @@ export class SearchResults extends BaseSearchComponent implements OnInit {
         if (searchRequest) {
             this.searchView = SearchTransformer.toView(this._searchService.getSearch());
             const city = this._cityLookup.getCity(this.searchView.destination_id);
-            if(city){
+            if (city) {
                 this.searchView.destination = `${city.city}, ${city.country_code}`;
             }
 
@@ -30,7 +30,10 @@ export class SearchResults extends BaseSearchComponent implements OnInit {
         this.addUserContext();
     }
 
-    private addUserContext(){
-        this.searchResult.userContext = SearchTransformer.toUserContext(this.searchResult.UserContext);
+    private addUserContext() {
+        if (this.searchResult.UserContext) {
+            this.searchResult.userContext = SearchTransformer.toUserContext(this.searchResult.UserContext);
+        }
+
     }
 }

@@ -50,7 +50,7 @@ module.exports = {
     devtool: "inline-source-map",
     plugins: [
         new LiveReloadPlugin({
-            appendScriptTag: false,
+            appendScriptTag: true,
         })
     ]
 };

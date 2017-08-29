@@ -5,7 +5,9 @@
                class="w3-bar-item w3-input"
                [(ngModel)]="searchView.destination"
                (input)="cityLookup()"
-               placeholder="Destination">
+               placeholder="Destination"
+               required
+               [ngClass]="{'w3-border w3-border-red': message && message.id === 'destination_id'}">
         <div class="drop-down full-width w3-text-blue" *ngIf="suggestCities.length > 0">
             <ul>
                 <li *ngFor="let cityInfo of suggestCities">
@@ -49,18 +51,28 @@
         </select>
     </div>
     <div class="w3-cell w3-padding w3-cell-bottom">
-        <button class="w3-bar-item w3-button w3-blue" (click)="search()">Search <i class="material-icons">search</i>
+        <button class="w3-bar-item w3-button w3-blue"
+                (click)="search()"
+                [disabled]="isSearchInProgress">
+            Search <i class="material-icons">search</i>
+            <i class="w3-margin-left material-icons w3-spin" *ngIf="isSearchInProgress">refresh</i>
         </button>
     </div>
 </div>
-
+<div class="w3-padding w3-container w3-red" *ngIf="message">
+    {{message.text}}
+</div>
 <div class="search-results" *ngIf="searchResult">
 
     <travel-context [contextData]="searchResult.TravelContext"></travel-context>
 
     <search-context [contextData]="searchResult.OccupancyContext"></search-context>
 
-    <user-context [contextData]="searchResult.userContext"></user-context>
+    <user-context [contextData]="searchResult.userContext" *ngIf="searchResult.userContext"></user-context>
 
+</div>
+
+<div *ngIf="!searchResult">
+    <div class="w3-container w3-display-middle">No search results.</div>
 </div>
 
