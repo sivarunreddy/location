@@ -61,8 +61,13 @@ export abstract class BaseSearchComponent {
             return;
         }
         this.isSearchInProgress = true;
-        this._searchService.search(SearchTransformer.toModel(params)).subscribe(() => {
+        this._searchService.search(SearchTransformer.toModel(params)).subscribe(result => {
                 this.isSearchInProgress = false;
+                const searchResults = result ;
+                if (result && result.UserContext) {
+                    searchResults.userContext = SearchTransformer.toUserContext(result.UserContext);
+                }
+                this._searchService.setResult(searchResults);
                 this.catchSearchData();
             },
             (error) => {

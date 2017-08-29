@@ -4,7 +4,7 @@ import {BaseContextComponent} from "../base-context.component";
 
 @Component({
     selector: "search-context",
-    templateUrl: './search-context.component.html',
+    templateUrl: "./search-context.component.html",
 })
 export class SearchContextComponent extends BaseContextComponent {
 
@@ -30,5 +30,5 @@ export class SearchContextComponent extends BaseContextComponent {
                 color: "w3-text-light-green",
             }
         },
-    }
+    };
 }

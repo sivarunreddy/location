@@ -271,6 +271,30 @@ export const CityInfo =
             "country_code": "US",
             "latitude": 39.2904,
             "longitude": -76.6122
-        }
+        },
+        {
+            "destination_id": 21231,
+            "city": "Dusseldorf",
+            "region": "MD",
+            "country_code": "US",
+            "latitude": 39.2904,
+            "longitude": -76.6122
+        },
+        {
+            "destination_id": 15389,
+            "city": "Paris",
+            "region": "MD",
+            "country_code": "FR",
+            "latitude": 39.2904,
+            "longitude": -76.6122
+        },
+        {
+            "destination_id": 32383,
+            "city": "Edinburugh",
+            "region": "MD",
+            "country_code": "GB",
+            "latitude": 39.2904,
+            "longitude": -76.6122
+        },
     ]
 ;

@@ -9,17 +9,20 @@ export class SearchService {
     private _request: ISearch;
     private _results;
 
-    constructor(private _httpClient:HttpClient, private _configService:ConfigService){
+    constructor(private _httpClient: HttpClient, private _configService: ConfigService) {
 
     }
 
     public search(search: ISearch): Observable<any> {
         this._request = search;
-        const observable = this._httpClient.post(this._configService.getSearchURL(),search);
+        const observable = this._httpClient.post(this._configService.getSearchURL(), search);
 
-        observable.subscribe(result => {
-            this._results = result;
-        });
+        /*observable.subscribe(result => {
+         this._results = result ;
+         if (result && result.UserContext) {
+         this._results.userContext = SearchTransformer.toUserContext(result.UserContext);
+         }
+         });*/
 
         return observable;
     }
@@ -30,5 +33,9 @@ export class SearchService {
 
     public getSearchResult(): any {
         return this._results;
+    }
+
+    setResult(searchResults: any) {
+        this._results = searchResults;
     }
 }

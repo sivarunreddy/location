@@ -8,7 +8,7 @@ import {ConfigService} from "./config.service";
 export class GeoLocationService {
     private _geoLocation: IGeoLocation;
 
-    constructor(private _httpClient: HttpClient, private _configService:ConfigService) {
+    constructor(private _httpClient: HttpClient, private _configService: ConfigService) {
         this.init();
     }
 

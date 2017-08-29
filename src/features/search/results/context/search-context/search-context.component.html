@@ -7,51 +7,22 @@
             </h2>
         </div>
 
-        <div class="w3-third w3-section w3-padding" *ngFor="let searchContext of contextData">
-            <div class="w3-card-4 w3-padding" *ngIf="TRIP_MAPPING[searchContext.occupancyType]">
-                <div class="w3-xlarge w3-padding full-width text-center">
-                    {{TRIP_MAPPING[searchContext.occupancyType].title}}
-                </div>
+        <div class="w3-row">
+            <div class="w3-col l3 w3-section w3-padding" *ngFor="let searchContext of contextData">
+                <div class="w3-card-4" *ngIf="TRIP_MAPPING[searchContext.occupancyType]">
+                    <div class="w3-xlarge w3-padding full-width text-center">
+                        {{searchContext.occupancyType}}
+                    </div>
 
-                <div class="w3-cell ">
-                    <div class="w3-padding">
-                        <i class="material-icons w3-jumbo {{TRIP_MAPPING[searchContext.occupancyType].logo.color}}">{{TRIP_MAPPING[searchContext.occupancyType].logo.name}}</i>
-                        <i class="material-icons w3-xxlarge">arrow_forward</i>
-                        <span class="text-super">Match <span class="w3-badge w3-yellow">{{searchContext.matchPercentage}}%</span> </span>
+                    <div class="w3-cell ">
+                        <div class="w3-padding">
+                            <i class="material-icons w3-jumbo {{TRIP_MAPPING[searchContext.occupancyType].logo.color}}">{{TRIP_MAPPING[searchContext.occupancyType].logo.name}}</i>
+                            <i class="material-icons w3-xxlarge">arrow_forward</i>
+                            <span class="text-super">Match <span class="w3-badge w3-yellow">{{searchContext.matchPercentage}}%</span> </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--
-
-                <div class="w3-third w3-section w3-padding">
-                    <div class="w3-card-4 w3-padding">
-                        <div class="w3-xlarge w3-padding full-width text-center">Weekend trip</div>
-                        <div class="w3-cell">
-                            <div class="w3-padding">
-                                <i class="material-icons w3-jumbo w3-text-blue">beach_access</i>
-                                <i class="material-icons w3-xxlarge">arrow_forward</i>
-                                <span class="text-super">Match <span class="w3-badge w3-green">75%</span> </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w3-third w3-section w3-padding">
-                    <div class="w3-card-4 w3-padding">
-                        <div class="w3-xlarge w3-padding full-width text-center">Family trip</div>
-
-                        <div class="w3-cell">
-                            <div class="w3-padding">
-                                <i class="material-icons w3-jumbo w3-text-lime">golf_course</i>
-                                <i class="material-icons w3-xxlarge">arrow_forward</i>
-                                <span class="text-super">Match <span class="w3-badge w3-green">75%</span> </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        -->
     </div>
 </div>

@@ -21,19 +21,13 @@ export class SearchResults extends BaseSearchComponent implements OnInit {
             }
 
             this.searchResult = this._searchService.getSearchResult();
-            this.addUserContext();
         }
     }
 
     public catchSearchData() {
         this.searchResult = this._searchService.getSearchResult();
-        this.addUserContext();
-    }
-
-    private addUserContext() {
-        if (this.searchResult.UserContext) {
-            this.searchResult.userContext = SearchTransformer.toUserContext(this.searchResult.UserContext);
-        }
 
     }
+
+
 }

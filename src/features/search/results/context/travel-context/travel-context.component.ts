@@ -12,17 +12,30 @@ export class TravelContextComponent extends BaseContextComponent {
             logo: "flight_takeoff",
             title: "Air",
         },
-        ROAD: {
+        RAIL: {
             logo: "directions_railway",
             title: "Train",
         },
-        RAIL: {
+        ROAD: {
             logo: "directions_bus",
             title: "Road"
         }
     }
 
-    public getTime(time) {
-        return `${~~(time / 3600)}h ${~~((time % 3600) / 60)}m  ${time % 60}s`
+    public getTime(travelContext) {
+        if (travelContext.feasibility === "INFEASIBLE") {
+            return "-";
+        } else {
+            return `${~~(travelContext.timeDistance.time / 3600)} Hours`;
+        }
+    }
+
+    public getDistance(travelContext) {
+        if (travelContext.feasibility === "INFEASIBLE") {
+            return "-";
+        } else {
+            return `${~~(travelContext.timeDistance.distance / 1000)} KM`;
+        }
+
     }
 }

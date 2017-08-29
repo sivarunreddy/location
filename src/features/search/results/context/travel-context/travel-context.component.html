@@ -15,19 +15,19 @@
                 </div>
 
                 <div class="w3-container w3-white">
-                    <h4 class="w3-xlarge">{{TRAVEL_MODS_MAPPING[travelContext.travelMode].title}}</h4>
-                    <table class="w3-table" *ngIf="travelContext.feasibility == 'REASONABLE_STRETCH';else no_travel">
+                    <h4 class="w3-xlarge">{{TRAVEL_MODS_MAPPING[travelContext.travelMode].title}} ({{travelContext.feasibility}})</h4>
+                    <table class="w3-table" >
                         <tr>
                             <td>Distance</td>
-                            <td>{{travelContext.timeDistance.distance}} KM</td>
+                            <td>{{getDistance(travelContext)}}</td>
                         </tr>
                         <tr>
                             <td>Time</td>
-                            <td>{{getTime(travelContext.timeDistance.time)}}</td>
+                            <td>{{getTime(travelContext)}}</td>
                         </tr>
                     </table>
 
-                    <ng-template #no_travel>
+                    <!--<ng-template #no_travel>
                         <table class="full-width">
                             <tr rowspan="2">
                                 <td colspan="2" class="text-center">
@@ -35,7 +35,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </ng-template>
+                    </ng-template>-->
                 </div>
             </div>
         </div>
