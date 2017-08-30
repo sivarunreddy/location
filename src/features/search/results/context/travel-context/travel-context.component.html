@@ -15,7 +15,9 @@
                 </div>
 
                 <div class="w3-container w3-white">
-                    <h4 class="w3-xlarge">{{TRAVEL_MODS_MAPPING[travelContext.travelMode].title}} ({{travelContext.feasibility}})</h4>
+                    <h4 class="w3-large">{{TRAVEL_MODS_MAPPING[travelContext.travelMode].title}}
+                        <span class="text-lowercase">({{getTitle(travelContext.feasibility)}}) </span>
+                    </h4>
                     <table class="w3-table" >
                         <tr>
                             <td>Distance</td>

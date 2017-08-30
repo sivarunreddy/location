@@ -6,6 +6,9 @@ body {
 .text-super {
     vertical-align: super;
 }
+.text-lowercase{
+    text-transform: lowercase;
+}
 
 .login {
     min-height: 300px;
@@ -55,4 +58,8 @@ body {
 .word-count{
     padding-left: 15%;
     padding-bottom: 50px;
+}
+
+.margin-top-0{
+    margin-top: 0;
 }

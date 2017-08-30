@@ -31,4 +31,16 @@ export class SearchContextComponent extends BaseContextComponent {
             }
         },
     };
+
+    getTripLogo(type) {
+        if (type.startsWith("BUSINESS")) {
+            return "work";
+        } else if (type === "WEEKEND_GETAWAY_ADULTS") {
+            return "motorcycle";
+        } else if (type.startsWith("WEEKEND")) {
+            return "beach_access";
+        } else if (type.startsWith("VACATION")) {
+            return "golf_course";
+        }
+    }
 }
