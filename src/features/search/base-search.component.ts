@@ -36,7 +36,11 @@ export abstract class BaseSearchComponent {
 
     public cityLookup() {
         this.searchView.destination_id = undefined;
-        this.suggestCities = this._cityLookup.lookup(this.searchView.destination)
+        this._cityLookup.lookup(this.searchView.destination).subscribe(result => {
+            this.suggestCities = result.json() || [];
+        }, () => {
+            this.suggestCities = [];
+        });
     }
 
     public selectSuggestion(city) {

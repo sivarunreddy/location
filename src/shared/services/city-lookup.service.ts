@@ -1,14 +1,20 @@
 import {Injectable} from "@angular/core";
 import {CityInfo} from "../../config/city-info";
+import {ConfigService} from "./config.service";
+import {HttpClient} from "../http/http-client";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class CityLookup {
     private cityInfo: typeof CityInfo = CityInfo;
 
-    public lookup(value: string = "") {
-        if (value.length == 0) return [];
-        const result = this.cityInfo.filter(city => (city.city.match(new RegExp(value, "ig")) || []).length > 0);
-        return (result || []).length > 0 ? result : [];
+    public suggestions = [];
+
+    constructor(private _configService: ConfigService, private _httpClient: HttpClient) {
+    }
+
+    public lookup(value: string = ""): Observable<any> {
+        return this._httpClient.get(this._configService.getTyepAheadURL(), {q: value});
     }
 
     getCity(cityId) {
