@@ -9,7 +9,7 @@
 
         <div class="w3-row">
             <div class="w3-col l4 w3-section w3-padding" *ngFor="let searchContext of contextData">
-                <div class="w3-card" *ngIf="TRIP_MAPPING[searchContext.occupancyType]">
+                <div class="w3-card">
                     <div class="w3-large w3-padding full-width text-center">
                         {{searchContext.occupancyType.charAt(0)}}<span class="text-lowercase">{{getTitle(searchContext.occupancyType).substring(1)}}</span>
                     </div>
@@ -23,7 +23,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

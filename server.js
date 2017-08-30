@@ -7,6 +7,12 @@ const serverRootPath = path.normalize(`${__dirname}/`);
 
 app.use(express.static(`${serverRootPath}/assets`));
 
+app.get('*.js', function (req, res, next) {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    next();
+});
+
 app.use("/assets/*", (req, res) => {
     res.sendFile(`${serverRootPath}/${req.baseUrl}`);
 });

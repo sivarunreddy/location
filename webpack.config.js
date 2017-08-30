@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = {
     entry: {
         "app": [
@@ -38,7 +38,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+                loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap'})
             }
         ]
     },
@@ -46,11 +46,20 @@ module.exports = {
         port: 8081,
         publicPath: "./",
     },
-    watch: true,
+    watch: false,
     devtool: "inline-source-map",
     plugins: [
         new LiveReloadPlugin({
-            appendScriptTag: true,
+            appendScriptTag: false,
+        }),
+
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|html)$/,
+            threshold: 10240,
+            minRatio: 0.8
         })
+
     ]
 };

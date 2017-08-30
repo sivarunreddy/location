@@ -30,12 +30,13 @@ body {
 }
 
 .drop-down {
-    max-height: 100px;
+    max-height: 200px;
     max-width: 300px;
     border: 1px solid grey;
     position: absolute;
     background-color: white;
     overflow: auto;
+    padding-bottom: 8px;
 }
 
 .drop-down ul {
