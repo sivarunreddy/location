@@ -24,9 +24,13 @@ export class SearchResults extends BaseSearchComponent implements OnInit {
         }
     }
 
+    public searchCleanUP() {
+        super.searchCleanUP();
+        this.searchResult = undefined;
+    }
+
     public catchSearchData() {
         this.searchResult = this._searchService.getSearchResult();
-
     }
 
 

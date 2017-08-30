@@ -61,9 +61,10 @@ export abstract class BaseSearchComponent {
             return;
         }
         this.isSearchInProgress = true;
+        this.searchCleanUP();
         this._searchService.search(SearchTransformer.toModel(params)).subscribe(result => {
                 this.isSearchInProgress = false;
-                const searchResults = result ;
+                const searchResults = result;
                 if (result && result.UserContext) {
                     searchResults.userContext = SearchTransformer.toUserContext(result.UserContext);
                 }
@@ -79,6 +80,10 @@ export abstract class BaseSearchComponent {
                 console.log(error);
             }
         );
+    }
+
+    public searchCleanUP() {
+
     }
 
     abstract catchSearchData(): void ;
