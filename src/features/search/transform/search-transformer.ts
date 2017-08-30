@@ -8,7 +8,8 @@ export class SearchTransformer {
         const from = moment(view.from);
         const to = moment(view.to);
         return {
-            destinationId: Number(view.destination_id).toString(),
+            destination: view.destination,
+            destinationId: view.destination_id,
             fromDate: from.format("YYYY-MM-DD"),
             toDate: to.format("YYYY-MM-DD"),
             rooms: SearchTransformer.getRooms(view),
@@ -24,7 +25,7 @@ export class SearchTransformer {
 
     public static toView(search: ISearch): ISearchView {
         return {
-            destination: "",
+            destination: search.destination,
             destination_id: parseInt(search.destinationId, 10),
             /*from: `${search.fromDate.year}-${SearchTransformer.getZeroPad(search.fromDate.month)}-${SearchTransformer.getZeroPad(search.fromDate.day)}`,
              to: `${search.toDate.year}-${SearchTransformer.getZeroPad(search.toDate.month)}-${SearchTransformer.getZeroPad(search.toDate.day)}`,*/

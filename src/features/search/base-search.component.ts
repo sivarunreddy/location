@@ -6,11 +6,13 @@ import {CityLookup, GeoLocationService, LocationAuthService, SearchService} from
 import {ISearchView} from "./search-view";
 import {SearchTransformer} from "./transform/search-transformer";
 import {Component} from "@angular/core";
+import {Observable} from "rxjs/Observable";
 
 @Component({})
 export abstract class BaseSearchComponent {
     private FORMAT = "YYYY-MM-DD";
     public isSearchInProgress = false;
+    public isTypeAheadInProgress = false;
     public message: {
         id?: string,
         type: string,
@@ -26,6 +28,8 @@ export abstract class BaseSearchComponent {
     };
     public suggestCities: any = [];
 
+    searchChangeObserver;
+
     constructor(protected _router: Router,
                 protected _searchService: SearchService,
                 protected _geoLocationService: GeoLocationService,
@@ -35,17 +39,34 @@ export abstract class BaseSearchComponent {
     }
 
     public cityLookup() {
-        this.searchView.destination_id = undefined;
-        this._cityLookup.lookup(this.searchView.destination).subscribe(result => {
-            this.suggestCities = result.json() || [];
-        }, () => {
+
+        if (!this.searchChangeObserver) {
+            Observable.create(observer => {
+                this.searchChangeObserver = observer;
+            }).debounceTime(500) // wait 300ms after the last event before emitting last event
+                .distinctUntilChanged() // only emit if value is different from previous value
+                .subscribe(() => {
+                    this.searchView.destination_id = undefined;
+                    this.isTypeAheadInProgress = true;
+                    this._cityLookup.lookup(this.searchView.destination).subscribe(result => {
+                        this.isTypeAheadInProgress = false;
+                        this.suggestCities = result.json() || [];
+                    }, () => {
+                        this.isTypeAheadInProgress = false;
+                        this.suggestCities = [];
+                    });
+                });
+        }
+        if (this.searchView.destination && this.searchView.destination.trim().length > 0) {
+            this.searchChangeObserver.next(this.searchView.destination);
+        } else {
             this.suggestCities = [];
-        });
+        }
     }
 
     public selectSuggestion(city) {
-        this.searchView.destination = `${city.city}, ${city.region}`;
-        this.searchView.destination_id = city.destination_id;
+        this.searchView.destination = city.value;
+        this.searchView.destination_id = city.id;
         this.suggestCities = [];
     }
 

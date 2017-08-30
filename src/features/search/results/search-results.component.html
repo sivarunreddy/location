@@ -8,14 +8,17 @@
                placeholder="Destination"
                required
                [ngClass]="{'w3-border w3-border-red': message && message.id === 'destination_id'}">
-        <div class="drop-down full-width w3-text-blue" *ngIf="suggestCities.length > 0">
+        <div class="drop-down full-width w3-text-blue" *ngIf="!isTypeAheadInProgress && suggestCities.length > 0">
             <ul>
                 <li *ngFor="let cityInfo of suggestCities">
-                    <span (click)="selectSuggestion(cityInfo)">{{cityInfo.city}}, {{cityInfo.region}}, {{cityInfo.country_code}}</span>
+                    <span (click)="selectSuggestion(cityInfo)">{{cityInfo.value}}</span>
                 </li>
             </ul>
         </div>
 
+        <div class="drop-down full-width w3-text-blue" *ngIf="isTypeAheadInProgress">
+            <i class="w3-margin-left material-icons w3-spin">refresh</i>
+        </div>
     </div>
 
     <div class="w3-cell w3-padding">
@@ -42,6 +45,7 @@
     <div class="w3-cell w3-padding">
         <label># Children</label>
         <select class="w3-select" name="option" [(ngModel)]="searchView.children">
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
