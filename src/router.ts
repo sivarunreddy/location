@@ -1,4 +1,4 @@
-import {LoginComponent, SearchComponent, SearchResults} from "./features";
+import {LoginComponent, SearchComponent} from "./features";
 export const Router = [
     {
         path: "",
@@ -12,10 +12,6 @@ export const Router = [
     {
         path: "search",
         component: SearchComponent
-    },
-    {
-        path: "search-results",
-        component: SearchResults
-    },
+    }
 
 ];

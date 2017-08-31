@@ -29,6 +29,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
+    "@agm/core": "^1.0.0-beta.1",
     "@angular/cli": "^1.2.7",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.27",
     "@types/angular": "^1.5.16",
@@ -54,6 +55,7 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.1",
     "http-server": "^0.9.0",
+    "install": "^0.10.1",
     "lite-server": "^2.2.2",
     "lodash": "^4.16.2",
     "raw-loader": "^0.5.1",

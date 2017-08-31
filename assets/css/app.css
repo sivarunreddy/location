@@ -6,7 +6,8 @@ body {
 .text-super {
     vertical-align: super;
 }
-.text-lowercase{
+
+.text-lowercase {
     text-transform: lowercase;
 }
 
@@ -48,19 +49,54 @@ body {
     padding-right: 5px;
 }
 
-.search-results{
+.search-results {
     padding: 2% 5%;
 }
 
-.w3-row-padding{
+.w3-row-padding {
     padding: 0px !important;
 }
 
-.word-count{
+.word-count {
     padding-left: 15%;
     padding-bottom: 50px;
 }
 
-.margin-top-0{
+.margin-top-0 {
     margin-top: 0;
+}
+
+.sapient-blue {
+    color: white;
+    background-color: rgb(0, 48, 255);
+}
+
+.sapient-grey {
+    color: black;
+    background-color: rgb(202, 202, 202);
+}
+
+.sapient-text-blue{
+    color: rgb(0, 48, 255);
+}
+
+.header-logo{
+    margin-top: -60px;
+}
+
+.sebm-google-map-container {
+    height: 400px;
+}
+
+.agm-map {
+    height: 300px;
+}
+
+#agm-map {
+    height: 300px;
+}
+
+.w3-select{
+    max-width: 50% !important;
+    display: block !important;
 }

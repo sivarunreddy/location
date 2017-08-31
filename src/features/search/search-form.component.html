@@ -1,0 +1,93 @@
+<div class="w3-padding w3-container w3-red" *ngIf="message && !message.id">
+    {{message.text}}
+</div>
+
+<div class="w3-container sapient-grey">
+    <h2>Search form</h2>
+</div>
+
+<div class="w3-container w3-padding">
+    <div class="w3-cell-row">
+        <div class="w3-text-red" *ngIf="message && message.id === 'destination_id'">{{message.text}}</div>
+        <label>Destination</label>
+        <input
+                class="w3-input" type="text"
+                [(ngModel)]="searchView.destination"
+                (input)="cityLookup()"
+                [ngClass]="{'w3-border w3-border-red': message && message.id === 'destination_id'}"
+                placeholder="Enter destination">
+        <div class="drop-down full-width w3-text-blue" *ngIf="!isTypeAheadInProgress && suggestCities.length > 0">
+            <ul>
+                <li *ngFor="let cityInfo of suggestCities">
+                    <span (click)="selectSuggestion(cityInfo)">{{cityInfo.value}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="drop-down full-width w3-text-blue" *ngIf="isTypeAheadInProgress">
+            <i class="w3-margin-left material-icons w3-spin">refresh</i>
+        </div>
+
+    </div>
+    <div class="w3-cell-row">
+        <div class="w3-cell">
+            <label>Check in</label>
+            <input class="w3-input" [(ngModel)]="searchView.from" type="date">
+        </div>
+        <div class="w3-cell w3-padding">
+            <label>Check out</label>
+            <input class="w3-input" type="date" [(ngModel)]="searchView.to">
+        </div>
+    </div>
+    <div class="w3-cell-row">
+        <div class="w3-cell  w3-padding">
+            <label># Rooms</label>
+            <select class="w3-select" name="option" [(ngModel)]="roomCount" (change)="updateRooms()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+    </div>
+    <div class="w3-cell-row" *ngFor="let room of searchView.rooms">
+        <div class="w3-cell  w3-padding">
+            <label># Adults</label>
+            <select class="w3-select" [(ngModel)]="room.adults">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+        <div class="w3-cell  w3-padding">
+            <label># Children</label>
+            <select class="w3-select" name="option" [(ngModel)]="room.children">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="w3-right-align">
+        <button (click)="search()"
+                class="w3-btn w3-padding-large sapient-grey w3-right-align"
+                [disabled]="isSearchInProgress">
+            Resolve
+            <i class="w3-margin-left material-icons w3-spin" *ngIf="isSearchInProgress">refresh</i>
+        </button>
+    </div>
+
+</div>

@@ -12,7 +12,7 @@ export class SearchTransformer {
             destinationId: view.destination_id,
             fromDate: from.format("YYYY-MM-DD"),
             toDate: to.format("YYYY-MM-DD"),
-            rooms: SearchTransformer.getRooms(view),
+            rooms: view.rooms,
             user: {
                 accessToken: user.accessToken,
                 geoCoordinate: {
@@ -27,13 +27,9 @@ export class SearchTransformer {
         return {
             destination: search.destination,
             destination_id: parseInt(search.destinationId, 10),
-            /*from: `${search.fromDate.year}-${SearchTransformer.getZeroPad(search.fromDate.month)}-${SearchTransformer.getZeroPad(search.fromDate.day)}`,
-             to: `${search.toDate.year}-${SearchTransformer.getZeroPad(search.toDate.month)}-${SearchTransformer.getZeroPad(search.toDate.day)}`,*/
             from: search.fromDate,
             to: search.toDate,
-            rooms: search.rooms.length,
-            adults: search.rooms.length > 0 ? search.rooms[0].adults : 1,
-            children: search.rooms.length > 0 ? search.rooms[0].children : 0,
+            rooms: search.rooms,
         };
     }
 
@@ -67,16 +63,5 @@ export class SearchTransformer {
 
     private static getZeroPad(value) {
         return (`0${value}`).slice(-2);
-    }
-
-    private static getRooms({adults, children, rooms}) {
-        const roomsObj = [];
-        for (let i = 0; i < rooms; i++) {
-            roomsObj.push({
-                adults,
-                children,
-            })
-        }
-        return roomsObj;
     }
 }

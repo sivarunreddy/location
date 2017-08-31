@@ -1,16 +1,15 @@
 import {IRoom} from "./Room";
-import {IDate} from "./Date";
 import {IGeoLocation} from "./geo-location";
 export interface ISearch {
-    destination: string,
+    destination: string;
     destinationId: string;
     /*fromDate: IDate;
-    toDate: IDate;*/
-    fromDate: string,
-    toDate: string,
+     toDate: IDate;*/
+    fromDate: string;
+    toDate: string;
     rooms: Array<IRoom>;
     user: {
         geoCoordinate?: IGeoLocation;
         accessToken?: string
-    }
+    };
 }

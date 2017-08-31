@@ -7,15 +7,17 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 
 import {Angular2SocialLoginModule} from "angular2-social-login";
-import { TagCloudModule } from 'angular-tag-cloud-module';
+import {TagCloudModule} from "angular-tag-cloud-module";
+import {AgmCoreModule} from "@agm/core";
 
 import {Router} from "./router";
 import {AppComponent} from "./app.component";
-import {FacebookComponent, HomeComponent, LoginComponent, SearchComponent, SearchResults} from "./features";
-import {GeoLocationService, SearchService, LocationAuthService, CityLookup, ConfigService} from "./shared/services";
+import {FacebookComponent, HomeComponent, LoginComponent, SearchComponent, SearchFormComponent} from "./features";
+import {CityLookup, ConfigService, GeoLocationService, LocationAuthService, SearchService} from "./shared/services";
 import {HttpClient} from "./shared/http/http-client";
-import {TravelContextComponent, SearchContextComponent,UserContextComponent} from "./features/search/results/context";
+import {SearchContextComponent, TravelContextComponent, UserContextComponent} from "./features/search/context";
 import {config} from "../src/config/config";
+
 
 @NgModule({
     imports: [
@@ -27,6 +29,9 @@ import {config} from "../src/config/config";
         RouterModule.forRoot(Router),
         Angular2SocialLoginModule,
         TagCloudModule,
+        AgmCoreModule.forRoot({
+            apiKey: config.googleMapAPIKey,
+        }),
     ],
     declarations: [
         AppComponent,
@@ -34,10 +39,10 @@ import {config} from "../src/config/config";
         LoginComponent,
         FacebookComponent,
         SearchComponent,
-        SearchResults,
         TravelContextComponent,
         SearchContextComponent,
         UserContextComponent,
+        SearchFormComponent,
     ],
     providers: [
         GeoLocationService,
