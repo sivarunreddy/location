@@ -21,4 +21,5 @@ app.get("*", (req, res) => {
     res.sendFile(`${serverRootPath}/index.html`);
 });
 
-app.listen("8081",()=>{console.log(`Server started..`);});
+const PORT =  process.argv[2] || 8081;
+app.listen(PORT,()=>{console.log(`Server started on port ${PORT}`);});

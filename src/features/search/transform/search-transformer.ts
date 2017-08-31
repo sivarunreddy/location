@@ -64,4 +64,24 @@ export class SearchTransformer {
     private static getZeroPad(value) {
         return (`0${value}`).slice(-2);
     }
+
+    static getGeoLocations(geoCoordinateContext) {
+        const geoCoordinates = {
+            Origin: {geocoordinate: {}},
+            Destination: {geocoordinate: {}}
+        };
+        if (geoCoordinateContext) {
+            geoCoordinateContext.forEach(geoCoordinate => {
+                geoCoordinates[geoCoordinate.contextType] = geoCoordinate.data;
+            });
+        }
+        if (geoCoordinates["Origin"]) {
+            geoCoordinates["Origin"]["label"] = "A";
+        }
+
+        if (geoCoordinates["Destination"]) {
+            geoCoordinates["Destination"]["label"] = "B";
+        }
+        return geoCoordinates;
+    }
 }

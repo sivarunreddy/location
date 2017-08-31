@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 
 import {SearchService} from "../../shared/services";
-import {IGeoLocation} from "../../shared/model/geo-location";
 import {GeoLocationService} from "../../shared/services/geo-location.service";
+import {SearchTransformer} from "./transform/search-transformer";
 
 @Component({
     templateUrl: "./search.component.html",
@@ -10,9 +10,7 @@ import {GeoLocationService} from "../../shared/services/geo-location.service";
 export class SearchComponent {
     public searchResult: any;
     public parent = this;
-    public geoLocation: {
-        from: IGeoLocation,
-    };
+    public geoLocation;
 
     constructor(private _searchService: SearchService,
                 private _geoLocationService: GeoLocationService) {
@@ -24,9 +22,6 @@ export class SearchComponent {
 
     public catchSearchData() {
         this.searchResult = this._searchService.getSearchResult();
-        this.geoLocation = {
-            from : this._geoLocationService.getGeoLocation()
-        };
-        this.geoLocation.from.label = "A";
+        this.geoLocation = SearchTransformer.getGeoLocations(this.searchResult.GeoCoordinateContext);
     }
 }

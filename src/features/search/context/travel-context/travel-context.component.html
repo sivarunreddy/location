@@ -35,14 +35,19 @@
 
         <div class="w3-cell-row">
             <div class="w3-padding w3-cell">
-                <agm-map [latitude]="geoLocation.from.latitude" [longitude]="geoLocation.from.longitude">
+                <agm-map [latitude]="geoLocation.Origin.geocoordinate.latitude"
+                         [longitude]="geoLocation.Origin.geocoordinate.longitude"
+                         [zoom]="5">
                     <agm-marker
-                            [latitude]="geoLocation.from.latitude"
-                            [longitude]="geoLocation.from.longitude"
-                            [label]="geoLocation.from.label"
-                    >
-
-                    </agm-marker>
+                            [latitude]="geoLocation.Origin.geocoordinate.latitude"
+                            [longitude]="geoLocation.Origin.geocoordinate.longitude"
+                            [label]="geoLocation.Origin.label"
+                    ></agm-marker>
+                    <agm-marker
+                            [latitude]="geoLocation.Destination.geocoordinate.latitude"
+                            [longitude]="geoLocation.Destination.geocoordinate.longitude"
+                            [label]="geoLocation.Destination.label"
+                    ></agm-marker>
                 </agm-map>
             </div>
         </div>
